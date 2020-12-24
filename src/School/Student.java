@@ -49,4 +49,7 @@ public class Student {
         this.age = age;
     }
 
+    public String setStudentNumber() {
+        return null;
+    }
 }
