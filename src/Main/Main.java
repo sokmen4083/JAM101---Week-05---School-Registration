@@ -3,18 +3,20 @@ package Main;
 import School.Class;
 import School.Student;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Student[] students = new Student[2];
-        students= createStudent(2);
-        System.out.println(Arrays.toString(students));
+        Student[] students = createStudent(2);
+        Class[] classes = createClass(2,students);
+        for (Student s :students) {
+            System.out.println("Student's first name is " + s.getFirstName() + " Srudent's last name is " + s.getLastName()
+            + " Student's age is " + s.getAge());
+        }
     }
     private static Student[] createStudent(int n){
         Student[] students = new Student[n];
-        for (int i = 1 ; i < n+1 ; i++){
+        for (int i = 0 ; i < n ; i++){
             Student student = new Student();
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter " + i + ". student firstname: ");
@@ -38,8 +40,7 @@ public class Main {
                 System.out.println("Please enter a value between 6 and 10.  " + i + ". student age: ");
                 student.setAge(scanner.nextInt());
             }
-            System.out.println("First name is " + student.getFirstName() + ". Last name is " + student.getLastName() +
-                               ". Student's age is " +student.getAge() + ". Student's number is " +Main.createStudentNumber(student));
+            student.setStudentNumber(createStudentNumber(student));
             students[i] = student;
         }
         return students;
@@ -67,7 +68,7 @@ public class Main {
                                 student.getAge() + student.setStudentNumber());
         }
     }
-    private static Class[] createClass(int n){
+    private static Class[] createClass(int n, Student[] students){
         Class[] classes = new Class[n];
         for(int i = 1; i < 6 ; i++){
             Class newClass = new Class();
